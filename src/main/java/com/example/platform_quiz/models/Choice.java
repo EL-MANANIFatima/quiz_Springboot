@@ -22,7 +22,6 @@ public class Choice implements Serializable {
 
     private String description;
     private int note;
-
     @OneToMany(mappedBy = "choix",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private List<Reponce> reponces;
 }
