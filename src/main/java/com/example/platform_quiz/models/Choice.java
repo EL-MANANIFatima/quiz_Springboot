@@ -22,5 +22,4 @@ public class Choice implements Serializable {
     private Integer id;
     private String description;
     private int note;
-
 }
