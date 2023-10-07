@@ -1,9 +1,6 @@
 package com.example.platform_quiz.controllers;
 
-import com.example.platform_quiz.models.Choice;
-import com.example.platform_quiz.models.Question;
-import com.example.platform_quiz.models.Reponce;
-import com.example.platform_quiz.models.User;
+import com.example.platform_quiz.models.*;
 import com.example.platform_quiz.services.reponce_service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -31,5 +28,9 @@ public class reponce_controller {
         Choice choix= choix_service.getChoix(id_choix);
         Question question= service_question.getQuestion(id_question);
        return reponce_service.insert(user,choix,question);
+    }
+    @PostMapping("/getScore")
+    public int getScoreCategory(@RequestParam Integer id_user,@RequestParam Integer id_category){
+       return reponce_service.getScoreById(id_user,id_category);
     }
 }

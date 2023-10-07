@@ -4,13 +4,16 @@ import com.example.platform_quiz.DAO.Question_DAO;
 import com.example.platform_quiz.DTO.question_request_DTO;
 import com.example.platform_quiz.models.Question;
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public class question_service_imp implements service_question{
+    @Autowired
     Question_DAO question_dao;
+    @Autowired
     ModelMapper modelMapper;
 
     public question_service_imp(Question_DAO question_dao, ModelMapper modelMapper) {

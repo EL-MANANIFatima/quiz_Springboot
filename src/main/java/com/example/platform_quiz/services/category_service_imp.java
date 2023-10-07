@@ -2,12 +2,14 @@ package com.example.platform_quiz.services;
 
 import com.example.platform_quiz.DAO.category_DAO;
 import com.example.platform_quiz.models.Category;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public class category_service_imp implements category_service{
+    @Autowired
     category_DAO category_dao;
 
     public category_service_imp(category_DAO category_dao) {
