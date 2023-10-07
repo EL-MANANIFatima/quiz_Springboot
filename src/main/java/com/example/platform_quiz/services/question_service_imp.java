@@ -30,7 +30,8 @@ public class question_service_imp implements service_question{
 
     @Override
     public List<Question> getByCategoryId(Integer category_id) {
-        return question_dao.findByCategoryId(category_id);
+        List<Question> list=question_dao.findByCategoryId(category_id);
+        return list;
     }
 
     @Override

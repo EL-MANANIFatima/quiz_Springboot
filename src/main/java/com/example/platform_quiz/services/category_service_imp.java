@@ -2,6 +2,7 @@ package com.example.platform_quiz.services;
 
 import com.example.platform_quiz.DAO.category_DAO;
 import com.example.platform_quiz.models.Category;
+import com.example.platform_quiz.models.Question;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,4 +26,6 @@ public class category_service_imp implements category_service{
     public List<Category> getAll() {
        return category_dao.findAll();
     }
+
+
 }
