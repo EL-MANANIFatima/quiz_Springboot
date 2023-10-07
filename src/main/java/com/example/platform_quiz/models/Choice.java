@@ -1,5 +1,6 @@
 package com.example.platform_quiz.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,10 +20,7 @@ public class Choice implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-
     private String description;
     private int note;
 
-    @OneToMany(mappedBy = "choix",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-    private List<Reponce> reponces;
 }

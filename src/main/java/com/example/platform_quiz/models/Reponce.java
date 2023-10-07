@@ -1,9 +1,9 @@
 package com.example.platform_quiz.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.io.Serializable;
 
@@ -12,24 +12,25 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "reponces")
+@Getter
+@Setter
 public class Reponce implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     @ManyToOne
-    @JoinColumn(name = "id_question")
-    @MapsId("id")
+    //@JoinColumn(name = "id_question")
+    @JsonIgnore
     private Question question;
-
     @ManyToOne
-    @MapsId("id")
-    @JoinColumn(name = "id_choix")
+    @JsonIgnore
+    //@JoinColumn(name = "id_choix")
     private  Choice choix;
 
     @ManyToOne
-    @MapsId("id")
-    @JoinColumn(name = "id_user")
+    @JsonIgnore
+    //@JoinColumn(name = "id_user")
     private  User user;
 
 

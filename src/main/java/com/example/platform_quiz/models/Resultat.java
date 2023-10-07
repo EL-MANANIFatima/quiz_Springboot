@@ -17,6 +17,7 @@ public class Resultat implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     private Integer score_category;
+    private Integer id_category;
 
     @ManyToOne
     private User user;

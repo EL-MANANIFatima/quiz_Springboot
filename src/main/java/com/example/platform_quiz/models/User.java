@@ -1,5 +1,6 @@
 package com.example.platform_quiz.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -22,9 +23,7 @@ public class User  implements Serializable {
     private String nom;
     private String adresse;
     private Integer phone;
-
-    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-    private List<Reponce> reponces;
+    private String password;
 
 
     @OneToMany(mappedBy = "user",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
