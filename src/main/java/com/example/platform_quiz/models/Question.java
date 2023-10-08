@@ -24,6 +24,6 @@ public class Question implements Serializable {
     @ManyToOne
     private Category category;
 
-    @OneToMany(mappedBy = "question",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-    private List<Reponce> reponces;
+
+
 }
