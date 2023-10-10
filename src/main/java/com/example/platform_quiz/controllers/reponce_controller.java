@@ -34,4 +34,9 @@ public class reponce_controller {
     public int getScoreCategory(@RequestParam Integer id_user,@RequestParam Integer id_category){
        return reponce_service.getScoreById(id_user,id_category);
     }
+    @PostMapping("/getScoreGlobale")
+    public int getGlobale(@RequestParam Integer id_user){
+     return    reponce_service.getScoreGlobale(id_user);
+    }
+
 }

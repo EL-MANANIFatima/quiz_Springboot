@@ -6,5 +6,5 @@ public interface reponce_service {
 
     public Reponce insert(User user, Choice choix, Question question);
     public int getScoreById(Integer id_user, Integer Id_category);
-
+    public int getScoreGlobale(Integer id_user);
 }

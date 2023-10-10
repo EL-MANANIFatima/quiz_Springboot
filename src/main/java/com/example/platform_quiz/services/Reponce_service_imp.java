@@ -45,5 +45,14 @@ public class Reponce_service_imp implements reponce_service{
         return score;
     }
 
-
+     @Override
+    public int getScoreGlobale(Integer id_user)
+    {
+        List<Reponce> reponces=responce_dao.findReponcesByUser_Id(id_user);
+        int score=0;
+        for(Reponce reponce:reponces){
+            score+=reponce.getChoix().getNote();
+        }
+        return score;
+    }
 }
