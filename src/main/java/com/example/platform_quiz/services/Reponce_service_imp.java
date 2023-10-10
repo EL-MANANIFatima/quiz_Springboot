@@ -1,10 +1,17 @@
 package com.example.platform_quiz.services;
 import com.example.platform_quiz.DAO.Responce_DAO;
 import com.example.platform_quiz.DAO.Resultat_DAO;
+import com.example.platform_quiz.DAO.category_DAO;
+import com.example.platform_quiz.DTO.QuestionChoixDto;
+import com.example.platform_quiz.DTO.ReponseDto;
+import com.example.platform_quiz.DTO.SaveReponseDto;
+import com.example.platform_quiz.DTO.ScoreDto;
 import com.example.platform_quiz.models.*;
 import com.example.platform_quiz.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -17,6 +24,8 @@ public class Reponce_service_imp implements reponce_service{
     Resultat_DAO resultat_dao;
     @Autowired
     UserRepository userRepository;
+    @Autowired
+    category_DAO categoryDao;
 
 
     @Override
@@ -27,6 +36,19 @@ public class Reponce_service_imp implements reponce_service{
         reponce.setQuestion(question);
         Reponce saved =  responce_dao.save(reponce);
         return saved;
+    }
+
+    @Override
+    public List<SaveReponseDto> send(User user , List<QuestionChoix> reponses ){
+        List<SaveReponseDto> reponseDTOs = new ArrayList<>();
+
+        for (QuestionChoix reponse : reponses) {
+            Reponce saved = insert(user, reponse.getChoix(), reponse.getQuestion());
+            SaveReponseDto resonse = new SaveReponseDto(saved.getQuestion().getEnnonce(),saved.getChoix().getDescription());
+            reponseDTOs.add(resonse);
+        }
+
+        return reponseDTOs;
     }
 
     @Override
@@ -46,13 +68,19 @@ public class Reponce_service_imp implements reponce_service{
     }
 
      @Override
-    public int getScoreGlobale(Integer id_user)
+    public ScoreDto getScoreGlobale(Integer id_user)
     {
-        List<Reponce> reponces=responce_dao.findReponcesByUser_Id(id_user);
-        int score=0;
-        for(Reponce reponce:reponces){
-            score+=reponce.getChoix().getNote();
+        ScoreDto scoreDto = new ScoreDto();
+        List<Category> categories = categoryDao.findAll();
+        int globalScore = 0;
+        for (Category category : categories) {
+            int categoryId = category.getId();
+            String categoryName = category.getLibelle();
+            int categoryScore = getScoreById(id_user, categoryId);
+            globalScore += categoryScore;
+            scoreDto.getCategoryScores().put(categoryName, categoryScore);
         }
-        return score;
+        scoreDto.setGlobalScore(globalScore);
+        return scoreDto;
     }
 }
