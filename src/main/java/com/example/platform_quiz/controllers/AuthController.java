@@ -1,15 +1,14 @@
 package com.example.platform_quiz.controllers;
 
 
-import com.example.platform_quiz.Dto.LoginDto;
+import com.example.platform_quiz.DTO.LoginDto;
+import com.example.platform_quiz.DTO.UserDto;
 import com.example.platform_quiz.models.User;
 import com.example.platform_quiz.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import com.example.platform_quiz.Dto.UserDto;
 
 import java.util.List;
 
@@ -25,6 +24,7 @@ public class AuthController {
 
         this.userService = userService;
     }
+
     @GetMapping("")
     public List<UserDto> getUsers(){
         return  userService.findAll();

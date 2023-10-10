@@ -10,4 +10,5 @@ import java.util.List;
 
 public interface Responce_DAO extends JpaRepository<Reponce,Integer> {
    public List<Reponce> findReponcesByUser_IdAndQuestion_Category_Id(Integer id_user, Integer id_category);
+   public List<Reponce> findReponcesByUser_Id(Integer id_user);
 }

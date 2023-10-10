@@ -1,7 +1,7 @@
 package com.example.platform_quiz.services.implementation;
 
-import com.example.platform_quiz.Dto.LoginDto;
-import com.example.platform_quiz.Dto.UserDto;
+import com.example.platform_quiz.DTO.LoginDto;
+import com.example.platform_quiz.DTO.UserDto;
 import com.example.platform_quiz.models.User;
 import com.example.platform_quiz.repositories.UserRepository;
 import com.example.platform_quiz.services.UserService;
@@ -66,4 +66,10 @@ public class UserServiceImplementation implements UserService {
         }
 		return null;
 }
+
+    @Override
+    public User getUser(Integer id) {
+        User user= userRepository.findById(id).orElse(null);
+        return user;
+    }
 }
