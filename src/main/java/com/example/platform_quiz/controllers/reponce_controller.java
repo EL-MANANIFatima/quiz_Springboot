@@ -1,13 +1,12 @@
 package com.example.platform_quiz.controllers;
 
 import com.example.platform_quiz.models.*;
+import com.example.platform_quiz.services.UserService;
 import com.example.platform_quiz.services.reponce_service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import com.example.platform_quiz.services.service_question;
 import   com.example.platform_quiz.services.choix_service;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("reponces")
@@ -18,13 +17,15 @@ public class reponce_controller {
      service_question service_question;
     @Autowired
       choix_service choix_service;
+    @Autowired
+    UserService userService;
     public reponce_controller(com.example.platform_quiz.services.reponce_service reponce_service) {
         this.reponce_service = reponce_service;
     }
 
     @PostMapping("/add")
-    public Reponce save(@RequestParam Integer id_choix,@RequestParam Integer id_question){
-        User user=null;
+    public Reponce save(@RequestParam Integer id_choix,@RequestParam Integer id_question,@RequestParam  Integer id_user){
+        User user=userService.getUser(id_user);
         Choice choix= choix_service.getChoix(id_choix);
         Question question= service_question.getQuestion(id_question);
        return reponce_service.insert(user,choix,question);

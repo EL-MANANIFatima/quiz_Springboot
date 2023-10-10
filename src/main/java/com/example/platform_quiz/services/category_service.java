@@ -9,6 +9,7 @@ import java.util.List;
 
 public interface category_service {
     Category save(Category category);
+    Category getCategory(Integer id_category);
     List<Category> getAll();
 
 }

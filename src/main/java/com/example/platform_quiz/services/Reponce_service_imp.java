@@ -1,9 +1,8 @@
 package com.example.platform_quiz.services;
-import com.example.platform_quiz.DAO.Question_DAO;
 import com.example.platform_quiz.DAO.Responce_DAO;
 import com.example.platform_quiz.DAO.Resultat_DAO;
-import com.example.platform_quiz.DAO.User_DAO;
 import com.example.platform_quiz.models.*;
+import com.example.platform_quiz.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -17,7 +16,7 @@ public class Reponce_service_imp implements reponce_service{
     @Autowired
     Resultat_DAO resultat_dao;
     @Autowired
-    User_DAO user_dao;
+    UserRepository userRepository;
 
 
     @Override
@@ -37,7 +36,7 @@ public class Reponce_service_imp implements reponce_service{
         for (Reponce reponce:reponces) {
             score+=reponce.getChoix().getNote();
         }
-        User user= (User) user_dao.findById(id_user).orElse(null);
+        User user= userRepository.findById(id_user).orElse(null);
         resultat.setUser(user);
         resultat.setId_category(id_category);
         resultat.setScore_category(score);

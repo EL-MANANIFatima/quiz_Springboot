@@ -1,7 +1,7 @@
 package com.example.platform_quiz.services;
 
-import com.example.platform_quiz.Dto.LoginDto;
-import com.example.platform_quiz.Dto.UserDto;
+import com.example.platform_quiz.DTO.LoginDto;
+import com.example.platform_quiz.DTO.UserDto;
 import com.example.platform_quiz.models.User;
 import org.springframework.stereotype.Service;
 
@@ -16,4 +16,5 @@ public interface UserService {
     List<UserDto> findAll();
 
     User login(LoginDto loginDto);
+    User getUser(Integer id);
 }

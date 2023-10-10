@@ -23,13 +23,14 @@ public class question_controller {
 
     @PostMapping("/push")
         public Question save(@RequestBody() question_request_DTO question)
-    {
+        {
           return   service_question.save(question);
         }
-        @GetMapping("/getQuestionByCategory/{id}")
-       public  List<Question> getByCategoryId(Integer id){
-           return service_question.getByCategoryId(id);
-        }
+    @GetMapping("/getQuestionByCategory/{id_category}")
+    public List<Question> getByCategoryId(@PathVariable Integer id_category) {
+        return service_question.getByCategoryId(id_category);
+    }
+
     }
 
 

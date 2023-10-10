@@ -23,6 +23,12 @@ public class category_service_imp implements category_service{
     }
 
     @Override
+    public Category getCategory(Integer id_category) {
+        Category category=category_dao.findById(id_category).orElse(null);
+        return category;
+    }
+
+    @Override
     public List<Category> getAll() {
        return category_dao.findAll();
     }

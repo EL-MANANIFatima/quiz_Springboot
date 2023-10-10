@@ -1,14 +1,12 @@
 package com.example.platform_quiz.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Generated;
 import lombok.NoArgsConstructor;
 
-import java.io.Serial;
 import java.io.Serializable;
-import java.util.List;
 
 @Entity
 @AllArgsConstructor
@@ -22,8 +20,14 @@ public class Question implements Serializable {
     private String ennonce;
 
     @ManyToOne
+    @JsonIgnore
     private Category category;
 
 
+
+    public Question(String ennonce, Category category) {
+        this.ennonce = ennonce;
+        this.category = category;
+    }
 
 }
